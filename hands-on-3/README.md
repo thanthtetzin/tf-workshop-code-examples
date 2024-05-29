@@ -6,6 +6,7 @@
 - run `cd hands-on-3`
 - copy paste aws playgroud access keys in terminal
 - open `provider.tf` and copy paste the following provider code:
+```
 terraform {
   required_providers {
     aws = {
@@ -17,8 +18,10 @@ terraform {
 provider "aws" {
   region = "eu-central-1"
 }
+```
 
 - open `main.tf` and copy paste the following and replace `your_name` with your actual name:
+```
 locals {
   owner   = "your_name"
   purpose = "BO platform Terraform Basic Features Workshop"
@@ -40,6 +43,7 @@ resource "aws_s3_bucket" "bucket" {
   force_destroy = true
   tags = local.common_tags
 }
+```
 
 - run `terraform init`
 - run `terraform fmt` to make codes prettier
@@ -50,6 +54,7 @@ resource "aws_s3_bucket" "bucket" {
 
 ### 2. Uploading html files to existing S3 bucket (Automating with GH action in real world usecase)
 - Copy paste this code to `main.tf`
+```
 resource "aws_s3_object" "upload_object" {
   for_each     = fileset("s3_files/", "*")
   bucket       = aws_s3_bucket.bucket.id
@@ -58,6 +63,7 @@ resource "aws_s3_object" "upload_object" {
   etag         = filemd5("s3_files/${each.value}")
   content_type = "text/html"
 }
+```
 
 - run `terraform plan`
 - run `terraform apply -auto-approve`
@@ -65,6 +71,7 @@ resource "aws_s3_object" "upload_object" {
 
 ### 3. Setting up static site hosting in S3 bucket
 - copy paste the following code to `main.tf`
+```
 resource "aws_s3_bucket_website_configuration" "static_site_config" {
   bucket = aws_s3_bucket.bucket.id
   index_document {
@@ -74,6 +81,7 @@ resource "aws_s3_bucket_website_configuration" "static_site_config" {
     key = "error.html"
   }
 }
+```
 
 - run `terraform plan`
 - run `terraform apply -auto-approve`
@@ -83,7 +91,8 @@ resource "aws_s3_bucket_website_configuration" "static_site_config" {
 
 
 ### 4. Unblocking all public access
-- copy paste the following tom `main.tf`
+- copy paste the following to `main.tf`
+```
 resource "aws_s3_bucket_public_access_block" "public_access_block" {
   bucket                  = aws_s3_bucket.bucket.id
   block_public_acls       = false
@@ -91,6 +100,7 @@ resource "aws_s3_bucket_public_access_block" "public_access_block" {
   ignore_public_acls      = false
   restrict_public_buckets = false
 }
+```
 - run `terraform plan`
 - run `terraform apply -auto-approve`
 - refresh your S3 bucket Permisson tab and you will see `Off` in Block public access
@@ -99,7 +109,8 @@ resource "aws_s3_bucket_public_access_block" "public_access_block" {
 
 
 ### 5. Attaching bucket policy to allow public read-only permission
-- copy paste the following to `main.tf`
+- copy paste the following code to `main.tf`
+```
 resource "aws_s3_bucket_policy" "allow_public_read_access_policy" {
   bucket = aws_s3_bucket.bucket.id
   policy = data.aws_iam_policy_document.allow_public_read_access_policy_doc.json
@@ -121,6 +132,7 @@ data "aws_iam_policy_document" "allow_public_read_access_policy_doc" {
     ]
   }
 }
+```
 
 - run `terraform plan`
 - run `terraform apply -auto-approve`
