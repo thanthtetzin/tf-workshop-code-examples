@@ -1,0 +1,9 @@
+.DS_Store
+hands-on-3/solution_ref.md
+
+.terraform/
+.terraform.lock.hcl
+.terraform.tfstate.lock
+.terraform.tfstate.lock.info
+terraform.tfstate
+terraform.tfstate.backup
