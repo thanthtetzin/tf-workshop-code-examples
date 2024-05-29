@@ -14,6 +14,8 @@
 
 ### 2. Create New Lifecycle Policy and Attach it to ECR Repository
 - Copy paste the following tf code to `main.tf`
+
+```
 resource "aws_ecr_lifecycle_policy" "ps_lifecycle_policy" {
   repository              = aws_ecr_repository.permission_service_ecr_repo.name
         policy     = <<EOF
@@ -36,6 +38,7 @@ resource "aws_ecr_lifecycle_policy" "ps_lifecycle_policy" {
 }
 EOF
 }
+```
 
 - notice that formatting is a bit off
 - run `terraform fmt` to make it prettier
