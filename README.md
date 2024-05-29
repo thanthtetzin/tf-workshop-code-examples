@@ -1,9 +1,13 @@
 ### Prerequisites
 - Terraform cli installed via Homebrew (https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform)
 - If you install deprecated one from homebrew, here are the steps to install latests one
-`brew uninstall terraform`
-`brew tap hashicorp/tap`
-`brew install hashicorp/tap/terraform`
+```
+brew uninstall terraform
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+```
+
+- VS Code Extension installed for terraform syntax highlighting and autocompletion (https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
 - AWS Playground Access
 
 
