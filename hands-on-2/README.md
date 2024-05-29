@@ -1,6 +1,4 @@
-# Deploying s3 bucket via child local module and attach bucket policy
-
-## ToDos
+## Deploying s3 bucket via child local module and attach bucket policy
 
 ### 1. Calling child local module by passing input arguments to create s3 bucket
 - run `cd hands-on-2`

@@ -1,4 +1,4 @@
-## ToDos
+## Deploying new AWS ECR Repository and attach lifecycle policy
 
 ### 1. Deploying new AWS ECR Repository Resource
 - run `cd hands-on-1`

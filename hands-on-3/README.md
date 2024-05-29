@@ -1,6 +1,4 @@
-# Deploying static site hosting in S3
-
-## ToDos
+## Deploying static site hosting in S3
 
 ### 1. Deploying new AWS S3 bucket
 - run `cd hands-on-3`
