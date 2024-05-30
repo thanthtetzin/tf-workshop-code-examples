@@ -24,26 +24,4 @@ resource "aws_ecr_repository" "permission_service_ecr_repo" {
   tags = local.common_tags
 }
 
-resource "aws_ecr_lifecycle_policy" "ps_lifecycle_policy" {
-  repository = aws_ecr_repository.permission_service_ecr_repo.name
-  policy     = <<EOF
-{
-    "rules": [
-        {
-            "rulePriority": 1,
-            "description": "Expire images older than 14 days",
-            "selection": {
-                "tagStatus": "untagged",
-                "countType": "sinceImagePushed",
-                "countUnit": "days",
-                "countNumber": 14
-            },
-            "action": {
-                "type": "expire"
-            }
-        }
-    ]
-}
-EOF
-}
 
