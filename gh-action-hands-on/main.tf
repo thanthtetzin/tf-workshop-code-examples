@@ -44,6 +44,7 @@ data "aws_iam_policy_document" "allow_public_read_access_policy_doc" {
       identifiers = [ "*" ]
     }
     effect = "Allow"
+    sid = "PublicRead"
     actions = [
       "s3:GetObject",
       "s3:GetObjectVersion"
